@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Analyzer - Phân Tích Ảnh Bằng AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-robot"></i> AI Image Analyzer</h1>
+            <p>Upload ảnh và để AI phân tích tạo prompt tương tự</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Kéo thả ảnh hoặc click để chọn</h3>
+                        <p>Hỗ trợ: JPG, PNG, GIF (Max: 10MB)</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                        <button class="btn-primary" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-plus"></i> Chọn Ảnh
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Preview Section -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <div class="image-container">
+                    <img id="previewImage" alt="Preview">
+                    <button class="btn-remove" id="removeImage">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <button class="btn-analyze" id="analyzeBtn">
+                    <i class="fas fa-magic"></i> Phân Tích Ảnh
+                </button>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>AI đang phân tích ảnh của bạn...</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="result-card">
+                    <h3><i class="fas fa-eye"></i> Kết Quả Phân Tích</h3>
+                    <div class="analysis-result">
+                        <h4>Mô tả ảnh:</h4>
+                        <p id="imageDescription"></p>
+                        
+                        <h4>Prompt để tạo ảnh tương tự:</h4>
+                        <div class="prompt-container">
+                            <textarea id="generatedPrompt" readonly></textarea>
+                            <button class="btn-copy" id="copyPrompt">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        
+                        <h4>Tags:</h4>
+                        <div class="tags-container" id="tagsContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Generated Image Section -->
+                <div class="generated-section" id="generatedSection" style="display: none;">
+                    <h3><i class="fas fa-image"></i> Ảnh Được Tạo</h3>
+                    <div class="generated-image-container">
+                        <img id="generatedImage" alt="Generated Image">
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-secondary" id="analyzeNewBtn">
+                        <i class="fas fa-redo"></i> Phân Tích Ảnh Khác
+                    </button>
+                    <button class="btn-primary" id="generateImageBtn">
+                        <i class="fas fa-magic"></i> Tạo Ảnh Mới
+                    </button>
+                </div>
+            </section>
+
+            <!-- API Configuration -->
+            <section class="config-section">
+                <div class="config-card">
+                    <h3><i class="fas fa-cog"></i> Cấu Hình API</h3>
+                    <div class="config-form">
+                        <div class="form-group">
+                            <label for="geminiApiKey">Gemini API Key:</label>
+                            <input type="password" id="geminiApiKey" placeholder="Nhập API key của bạn">
+                            <small>Lấy API key miễn phí tại <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></small>
+                        </div>
+                        <button class="btn-save" id="saveConfig">
+                            <i class="fas fa-save"></i> Lưu Cấu Hình
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AI Image Analyzer. Powered by Google Gemini AI</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
